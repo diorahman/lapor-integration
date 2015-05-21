@@ -1,6 +1,6 @@
 ## Integrate to lapor
 
-[![Build Status](https://travis-ci.org/diorahman/lapor-integration.svg)](https://travis-ci.org/diorahman/lapor-integration)
+[![Build Status](https://travis-ci.org/diorahman/lapor-integration.svg?branch=master)](https://travis-ci.org/diorahman/lapor-integration)
 
 This is ala KawalMenteri
 
