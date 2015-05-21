@@ -1,0 +1,21 @@
+{
+  "ident": true,
+  "token": "{}",
+  "subject": {
+    "email": "hihi@hihi.com",
+    "telpon": "0812345",
+    "namadepan": "kawalmenteri.org",
+    "namabelakang": "kawalmenteri.org"
+  },
+  "content": {
+    "isi": "isi kosong isi kosong isi kosong isi kosong isi"
+  },
+  "attachments": [
+    "http://hihi.com/hoho/hihi.jpg",
+    "http://hihi.com/hoho/hiho.jpg",
+    {
+      "name": "haha.jpg",
+      "url": "https://aa.com/aa.jpg"
+    }
+  ]
+}
