@@ -23,6 +23,7 @@
     "body-parser": "^1.10.0",
     "cors": "^2.5.2",
     "express": "^4.10.6",
+    "express-xml-bodyparser": "0.0.7",
     "moment": "^2.8.4",
     "request": "^2.51.0",
     "xml-writer": "^1.6.0",

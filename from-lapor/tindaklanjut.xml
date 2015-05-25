@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lapor type="TINDAKLANJUT">
+<laporan>
+<trackingid>212121</trackingid>
+<tindaklanjut tlid="414141" type="Pemerintah">
+<oleh id="21">Pengirim informasi tindak lanjut laporan</oleh>
+<tanggal>15 May 2014 11:03:11</tanggal>
+<isi>Isi tindak lanjut laporan </isi>
+<lampiran> 1 </lampiran>
+</tindaklanjut>
+</laporan>
+<transaksiid >12345</transaksiid>
+</lapor>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lapor type="DISPOSISI">
+<laporan>
+<trackingid>212121</trackingid>
+<judul>judul laporan di LAPOR!</judul>
+<isi>isi laporan yang sudah diverifikasi ulang oleh tim LAPOR!</isi>
+<kategori id="124">kategori laporan di LAPOR!</kategori>
+<tanggal>08 May 2014 11:10:54</tanggal>
+<disposisi id="126" tanggal="08 May 2014 11:10:54">Instansi yang di disposisikan</disposisi>
+<lampiran jumlah="2">
+<lampiran1 nama="File1 dsgsdgsd.jpg">
+  http://lapor/api/stream/download/lampiran/3d82c65781a3f25cc0608b41822dc260.jpg
+</lampiran1>
+<lampiran2 nama="File XYZ.jpg">
+  http://lapor/api/stream/download/lampiran/f44023603a50c9c110acc46f91787149.jpg</lampiran2>
+</lampiran>
+<salinan>
+<salinan1 id="63">Instansi yang juga mendapat salinan laporan
+</salinan1>
+<salinan2 id="78">Instansi yang juga mendapat salinan laporan
+</salinan2>
+</salinan>
+<informasitambahan>
+<info1 tanggal="09 May 2014 11:10:54" lampiran="2">konten informasi
+tambahan</info1>
+<info2 tanggal="11 May 2014 11:10:54" lampiran="1">konten informasi
+tambahan</info2>
+</ informasitambahan >
+</laporan>
+<transaksiid >12345</transaksiid>
+</lapor>
