@@ -9,10 +9,12 @@ function createResponse(obj) {
   root.writeAttribute('type', 'RESPON');
   root.writeElement('transaksiid', obj.transaksiid);
   var report = root.startElement('laporan');
-  report.writeAttribute('type', obj.status || 'TUNTAS');
   obj.laporan = obj.laporan || {};
   for (var key in obj.laporan) {
-    report.writeElement(key, obj.laporan[key]);
+    if (key == "type")
+      report.writeAttribute('type', obj.laporan[key]);
+    else
+      report.writeElement(key, obj.laporan[key]);
   }
   report.endElement();
   root.endElement();
@@ -41,16 +43,17 @@ module.exports = function(parsed, res) {
     var tanggal = parsed.lapor.laporan.tindaklanjut ? 
       parsed.lapor.laporan.tindaklanjut.tanggal : parsed.lapor.laporan.tanggal;
     var obj = { 
-      transaksiid: parsed.lapor.transaksiid || 12345,
+      transaksiid: parsed.lapor.transaksiid || 17081945,
       laporan: {
         type: parsed.lapor.type,
-        trackingid: parsed.lapor.laporan.trackingid,
+        trackingid: parsed.lapor.laporan.trackingid || 17081945,
         status: 'SUKSES',
         pesan: 'Uji coba',
         tanggal: tanggal 
       }   
     };
-    return res.send(obj);
+    res.append('Content-Type', 'application/xml');
+    return res.send(createResponse(obj));  
   }
 
   request.post({
@@ -59,5 +62,18 @@ module.exports = function(parsed, res) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(parsed)
-  }).pipe(res);
+  }).pipe(function(err, response, body){
+    if (err)
+      return send(err);
+    if (typeof body == 'string') {
+      try {
+        body = JSON.parse(body);
+      }
+      catch(ex) {
+        return res.status(500).send(ex);
+      }
+    }
+    res.append('Content-Type', 'application/xml');
+    res.send(createResponse(body));  
+  });
 }
