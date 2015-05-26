@@ -25,7 +25,7 @@ server.post('/lapor', auth, function(req, res){
     return res.sendStatus(400);
   report.send(req.body, res);
 });
-server.post('/balas', function(req, res, next){
+server.post('/notifikasi', function(req, res, next){
   if (!req.body)
     return res.sendStatus(400);
   reply(req.body, res);
