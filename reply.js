@@ -11,9 +11,9 @@ function createResponse(obj) {
   var report = root.startElement('laporan');
   obj.laporan = obj.laporan || {};
   for (var key in obj.laporan) {
-    if (key == "type")
-      report.writeAttribute('type', obj.laporan[key]);
-    else
+    if (key == 'type') 
+      report.writeAttribute(key, obj.laporan[key]);
+    else if (obj.laporan[key])
       report.writeElement(key, obj.laporan[key]);
   }
   report.endElement();
@@ -36,12 +36,15 @@ module.exports = function(parsed, res) {
       }
    }
  */
+  console.log(parsed);
   // then send it back to lapor!
   if (!config.replyUrl) {
     parsed.lapor = parsed.lapor || {};
     parsed.lapor.laporan = parsed.lapor.laporan || {};
     var tanggal = parsed.lapor.laporan.tindaklanjut ? 
       parsed.lapor.laporan.tindaklanjut.tanggal : parsed.lapor.laporan.tanggal;
+    if (parsed.lapor.laporan.status)
+      tanggal = parsed.lapor.laporan.status.tanggal;
     var obj = { 
       transaksiid: parsed.lapor.transaksiid || 17081945,
       laporan: {
