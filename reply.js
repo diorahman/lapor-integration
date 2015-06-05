@@ -23,20 +23,6 @@ function createResponse(obj) {
 
 module.exports = function(parsed, res) {
   // todo: send report to main system, expect an object with following format:
-  //
-/*
-   {
-      transaksiid: 12345
-      laporan: {
-        type: "DISPOSISI" // DISPOSISI, TUNTAS, PROSES, TINDAKLANJUT,
-        trackingid: 12345,
-        tanggal: "15 May 2014 11:03:11",
-        status: "SUKSES",
-        pesan: "PESAN"
-      }
-   }
- */
-  console.log(parsed);
   // then send it back to lapor!
   if (!config.replyUrl) {
     parsed.lapor = parsed.lapor || {};
@@ -58,25 +44,28 @@ module.exports = function(parsed, res) {
     res.append('Content-Type', 'application/xml');
     return res.send(createResponse(obj));  
   }
-
   request.post({
     url: config.replyUrl,
+    followRedirect: true,
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(parsed)
-  }).pipe(function(err, response, body){
-    if (err)
-      return send(err);
+  }, function(err, response, body) {
+    res.append('Content-Type', 'application/xml');
+    if (err || response.statusCode != 200) {
+      var err = {};
+      var message = err.message || 'Something is wrong with the upstream system';
+      var code = response.statusCode || 400;
+      return res.status(code).send('<error><message>' + message + '</message></error>'); 
+    }
     if (typeof body == 'string') {
       try {
         body = JSON.parse(body);
-      }
-      catch(ex) {
-        return res.status(500).send(ex);
+      } catch(ex) {
+        return res.status(500).send('<error><message>' + ex.message + '</message></error>');
       }
     }
-    res.append('Content-Type', 'application/xml');
-    res.send(createResponse(body));  
+    res.send(createResponse(body));
   });
 }
